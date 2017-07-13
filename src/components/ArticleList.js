@@ -1,18 +1,37 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import ArticleCard from './ArticleCard';
+import * as actions from '../actions/actions';
 
-const articles = [{ title: 'I\'m an article', votes: 4 },
-{ title: 'I\'m another article', votes: 5 },
-{ title: 'I\'m an article too', votes: 2 }];
 
 class ArticleList extends React.Component {
+
+  componentDidMount () {
+    this.props.fetchArticles();
+  }
+
   render () {
     return (
       <div id='ArticleList'>
-        {articles.map(article => <ArticleCard title={article.title} votes={article.votes} key={article.title} />)}
+        {this.props.articles.map(article => <ArticleCard title={article.title} votes={article.votes} key={article.title} />)}
       </div>
     );
   }
 }
 
-export default ArticleList;
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchArticles: () => {
+      dispatch(actions.fetchArticles());
+    }
+  };
+}
+
+function MapStateToProps (state) {
+  return {
+    articles: state.articles,
+    loading :state.loading
+
+  }
+}
+export default connect(MapStateToProps, mapDispatchToProps) (ArticleList);

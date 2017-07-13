@@ -7,9 +7,11 @@ export function fetchArticles () {
         dispatch(fetchArticlesRequest());
         axios.get(`${ROOT}/articles`)
         .then(res => {
+            console.log(res.data)
             dispatch(fetchArticlesSuccess(res.data.articles));
         })
         .catch(err => {
+            console.log(err)
             dispatch(fetchArticlesError(err));
         });
     };
