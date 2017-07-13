@@ -9,6 +9,7 @@ import './css/font-awesome.css';
 
 import App from './components/App';
 import ArticleList from './components/ArticleList';
+import ArticlePage from './components/ArticlePage';
 import reducer from './reducer/reducer';
 
 const store = createStore(reducer);
@@ -19,6 +20,7 @@ ReactDOM.render(<Provider store={store}>
                     <App>
                     <Switch>
                       <Route exact path='/' component={ArticleList} />
+                      <Route path='/article/1' component={ArticlePage} />
                     </Switch>
                     </App>
                   </Router>
