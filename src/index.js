@@ -20,7 +20,7 @@ ReactDOM.render(<Provider store={store}>
                   <Router history={history}>
                     <App>
                     <Switch>
-                      <Route exact path='/articles' component={ArticleList} />
+                      <Route exact path='/' component={ArticleList} />
                       <Route path='/article/1' component={ArticlePage} />
                     </Switch>
                     </App>
