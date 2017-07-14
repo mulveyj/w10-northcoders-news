@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class NewComment extends React.Component {
 constructor (props) {
@@ -15,11 +15,12 @@ constructor (props) {
         }
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 }
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <fieldset>
                         <label htmlFor="name-input">Name</label>
                         <input type="text" id="name-input" onChange={this.handleChange.bind(null, 'name')}/>
@@ -45,14 +46,15 @@ constructor (props) {
     this.setState(Object.assign(newState));
     }
 
-    // handleSubmit (newComment) {
-    //     //send the state
-    // }
+    handleSubmit (newComment) {
+        this.props.postComment(this.props.article_id, newComment);
+    }
 }
 
 
 export default NewComment;
 
 NewComment.proptypes = {
-
+    article_id: PropTypes.string.isRequired,
+    postComment: PropTypes.func.isRequired
 };

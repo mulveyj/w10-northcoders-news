@@ -47,6 +47,21 @@ export function fetchCommentsByArticleID (id) {
     };
 }
 
+export function addCommentsByArticleID (id, data) {
+    return function (dispatch) {
+        dispatch(addCommentsByArticleIDPost(id, data));
+        axios.post(`${ROOT}/articles/${id}/comments`, data)
+        .then(res => {
+            console.log('post res', res.data);
+            dispatch(addCommentsByArticleIDSuccess(res.data.comments));
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch(addCommentsByArticleIDError(err));
+        });
+    };
+}
+
 export function fetchArticlesRequest () {
     return {
         type: types.FETCH_ARTICLES_REQUESTS

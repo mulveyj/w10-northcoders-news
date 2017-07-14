@@ -25,7 +25,8 @@ class ArticlePage extends React.Component {
                     <VoteButton voteCount={this.props.selectedArticle.votes}/>
                 </div>
                 <div>
-                    <NewComment />
+                    <NewComment postComment={this.props.addCommentsByArticleID}
+                                article_id={this.props.match.params.article_id} />
                 </div>
                 <div>
                     <CommentList selectedComments={this.props.selectedComments}/>
@@ -42,6 +43,9 @@ function mapDispatchToProps (dispatch) {
     },
     fetchCommentsByArticleID: (id) => {
       dispatch(actions.fetchCommentsByArticleID(id));  
+    },
+    addCommentsByArticleID: (id, data) => {
+        dispatch(actions.addCommentsByArticleID(id, data));
     }
   };
 }
