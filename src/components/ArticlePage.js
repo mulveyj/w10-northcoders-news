@@ -22,7 +22,7 @@ class ArticlePage extends React.Component {
                 <div>
                     <ArticleTitleBar title={this.props.selectedArticle.title}/>
                     <ArticleText body={this.props.selectedArticle.body}/>
-                    <VoteButton />
+                    <VoteButton voteCount={this.props.selectedArticle.votes}/>
                 </div>
                 <div>
                     <NewComment />
@@ -58,5 +58,6 @@ export default connect(MapStateToProps, mapDispatchToProps) (ArticlePage);
 
 ArticlePage.proptypes = {
     selectedArticle: PropTypes.object.isRequired,
+    selectedComments: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired
 };

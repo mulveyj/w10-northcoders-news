@@ -1,12 +1,13 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class VoteButton extends React.Component {
     render() {
         return (
             <div>
                 <button>+</button>
-                <p>VoteCount</p>
+                <br/>
+                {this.props.voteCount}
                 <br />
                 <button>-</button>
             </div>   
@@ -17,5 +18,5 @@ class VoteButton extends React.Component {
 export default VoteButton;
 
 VoteButton.proptypes = {
-
+    votes: PropTypes.number.isRequired
 };

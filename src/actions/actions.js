@@ -108,3 +108,25 @@ export function fetchCommentsByArticleIDError (error) {
         payload: error
     };
 }
+
+export function addCommentsByArticleIDPost (id, comment) {
+    return {
+        type: types.ADD_COMMENTS_BY_ARTICLE_ID_POST,
+        id: id,
+        comment: comment
+    };
+}
+
+export function addCommentsByArticleIDSuccess (comments) {
+    return {
+        type: types.ADD_COMMENTS_BY_ARTICLE_ID_SUCCESS,
+        payload: comments 
+    };
+}
+
+export function addCommentsByArticleIDError (error) {
+    return {
+        type: types.ADD_COMMENTS_BY_ARTICLE_ID_ERROR,
+        payload: error
+    };
+}
