@@ -12,6 +12,7 @@ class ArticlePage extends React.Component {
 
     componentDidMount () {
         this.props.fetchArticlesByID(this.props.match.params.article_id);
+        this.props.fetchCommentsByArticleID(this.props.match.params.article_id);
     }
 
     render () {
@@ -27,7 +28,7 @@ class ArticlePage extends React.Component {
                     <NewComment />
                 </div>
                 <div>
-                    <CommentList />
+                    <CommentList selectedComments={this.props.selectedComments}/>
                 </div>
             </div>
         );
@@ -38,6 +39,9 @@ function mapDispatchToProps (dispatch) {
   return {
     fetchArticlesByID: (id) => {
       dispatch(actions.fetchArticlesByID(id));
+    },
+    fetchCommentsByArticleID: (id) => {
+      dispatch(actions.fetchCommentsByArticleID(id));  
     }
   };
 }
@@ -45,6 +49,7 @@ function mapDispatchToProps (dispatch) {
 function MapStateToProps (state) {
   return {
     selectedArticle: state.selectedArticle,
+    selectedComments: state.selectedComments,
     loading :state.loading
   };
 }

@@ -1,12 +1,15 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Comment from './Comment';
 
 class CommentList extends React.Component {
-    render() {
+
+    render () {
         return (
             <div>
-                <Comment />
+                {this.props.selectedComments.map((comment) => {
+                    return <Comment key={comment._id} comment={comment}/>;
+                })}
             </div>
         );
     }
@@ -15,5 +18,6 @@ class CommentList extends React.Component {
 export default CommentList;
 
 CommentList.proptypes = {
-
+    selectedComments: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired
 };

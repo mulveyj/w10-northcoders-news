@@ -18,10 +18,8 @@ export function fetchArticles () {
 }
 
 export function fetchArticlesByID (id) {
-    console.log('calling fetchAriclesByID', id);
     return function (dispatch) {
         dispatch(fetchArticlesByIDRequest(id));
-        console.log(`${ROOT}/articles/${id}`);
         axios.get(`${ROOT}/articles/${id}`)
         .then(res => {
             console.log('res', res.data)
@@ -30,6 +28,21 @@ export function fetchArticlesByID (id) {
         .catch(err => {
             console.log(err)
             dispatch(fetchArticlesByIDError(err));
+        });
+    };
+}
+
+export function fetchCommentsByArticleID (id) {
+    return function (dispatch) {
+        dispatch(fetchCommentsByArticleIDRequest(id));
+        axios.get(`${ROOT}/articles/${id}/comments`)
+        .then(res => {
+            console.log('cooment res', res.data);
+            dispatch(fetchCommentsByArticleIDSuccess(res.data.comments));
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch(fetchCommentsByArticleIDError(err));
         });
     };
 }
@@ -75,3 +88,23 @@ export function fetchArticlesByIDError (error) {
     };
 }
 
+export function fetchCommentsByArticleIDRequest (id) {
+    return {
+        type: types.FETCH_COMMENTS_BY_ARTICLE_ID_REQUESTS,
+        id: id
+    };
+}
+
+export function fetchCommentsByArticleIDSuccess (comments) {
+    return {
+        type: types.FETCH_COMMENTS_BY_ARTICLE_ID_SUCCESS,
+        payload: comments 
+    };
+}
+
+export function fetchCommentsByArticleIDError (error) {
+    return {
+        type: types.FETCH_COMMENTS_BY_ARTICLE_ID_ERROR,
+        payload: error
+    };
+}
