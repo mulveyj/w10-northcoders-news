@@ -1,10 +1,10 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class ArticleTitleBar extends React.Component {
-    render() {
+    render () {
         return (
-            <h2>This is the best article ever</h2>
+            <h2>{this.props.title}</h2>
         );
     }
 }
@@ -12,5 +12,5 @@ class ArticleTitleBar extends React.Component {
 export default ArticleTitleBar;
 
 ArticleTitleBar.proptypes = {
-
+    title: PropTypes.string.isRequired
 };

@@ -17,6 +17,23 @@ export function fetchArticles () {
     };
 }
 
+export function fetchArticlesByID (id) {
+    console.log('calling fetchAriclesByID', id);
+    return function (dispatch) {
+        dispatch(fetchArticlesByIDRequest(id));
+        console.log(`${ROOT}/articles/${id}`);
+        axios.get(`${ROOT}/articles/${id}`)
+        .then(res => {
+            console.log('res', res.data)
+            dispatch(fetchArticlesByIDSuccess(res.data.article));
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch(fetchArticlesByIDError(err));
+        });
+    };
+}
+
 export function fetchArticlesRequest () {
     return {
         type: types.FETCH_ARTICLES_REQUESTS
@@ -33,6 +50,27 @@ export function fetchArticlesSuccess (articles) {
 export function fetchArticlesError (error) {
     return {
         type: types.FETCH_ARTICLES_ERROR,
+        payload: error
+    };
+}
+
+export function fetchArticlesByIDRequest (id) {
+    return {
+        type: types.FETCH_ARTICLES_BY_ID_REQUESTS,
+        id: id
+    };
+}
+
+export function fetchArticlesByIDSuccess (article) {
+    return {
+        type: types.FETCH_ARTICLES_BY_ID_SUCCESS,
+        payload: article
+    };
+}
+
+export function fetchArticlesByIDError (error) {
+    return {
+        type: types.FETCH_ARTICLES_BY_ID_ERROR,
         payload: error
     };
 }

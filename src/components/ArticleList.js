@@ -13,7 +13,10 @@ class ArticleList extends React.Component {
   render () {
     return (
       <div id='ArticleList'>
-        {this.props.articles.map(article => <ArticleCard title={article.title} votes={article.votes} key={article.title} />)}
+        {this.props.articles.map(article => <ArticleCard title={article.title} 
+                                                          votes={article.votes} 
+                                                          key={article.title}
+                                                          article_id={article._id}/>)}
       </div>
     );
   }

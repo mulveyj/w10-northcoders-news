@@ -1,11 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class ArticleText extends React.Component {
     render() {
         return (
             <div>
-                <p>Yay!</p>
+                <p>{this.props.body}</p>
             </div>
         );
     }
@@ -14,5 +14,5 @@ class ArticleText extends React.Component {
 export default ArticleText;
 
 ArticleText.proptypes = {
-
+    body: PropTypes.string.isRequired
 };

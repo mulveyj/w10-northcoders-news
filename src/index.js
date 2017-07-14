@@ -21,7 +21,7 @@ ReactDOM.render(<Provider store={store}>
                     <App>
                     <Switch>
                       <Route exact path='/' component={ArticleList} />
-                      <Route path='/article/1' component={ArticlePage} />
+                      <Route path='/articles/:article_id' component={ArticlePage} />
                     </Switch>
                     </App>
                   </Router>

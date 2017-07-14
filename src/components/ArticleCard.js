@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const ArticleCard = function (props) {
   return (
@@ -11,7 +12,9 @@ const ArticleCard = function (props) {
         </div>
         <div className='media-content'>
           <div className='content'>
-            <h3 className='title is-3'>{props.title}</h3>
+            <Link to={'/articles/' + props.article_id}>
+                  {props.title}
+            </Link>
           </div>
         </div>
       </article>
@@ -21,7 +24,8 @@ const ArticleCard = function (props) {
 
 ArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired
+  votes: PropTypes.number.isRequired,
+  article_id: PropTypes.string.isRequired
 };
 
 export default ArticleCard;
